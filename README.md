@@ -5,10 +5,10 @@
 - Develop a web app that generates random user data(dummy data) and stores it in CSV file.
 
 ## Solution for the Web App
-- Using Flask to build the Web Application. Flask is a micro-framework, so less dependencies.
+`- Using Flask to build the Web Application. Flask is a micro-framework, so less dependencies.
 - All the parameters are stored in a text file and we choose a specific amount of them depending on the given slider range.
 - Using Pandas and StringIO library to get the CSV data.
-- Using Flask inbuilt method to download the "userdata.csv" file.
+- Using Flask inbuilt method to download the "userdata.csv" file.`
 
 ## Solution for the Deployment
 - Using render to deploy the Flask application
