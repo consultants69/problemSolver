@@ -1,47 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Data Generator</title>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
-    </head>
+<html>
+<head>
+<title>Generate User Data</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+  background-image: url('/w3images/parallax1.jpg');
+  min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+  background-image: url("/w3images/parallax2.jpg");
+  min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+  background-image: url("/w3images/parallax3.jpg");
+  min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+    min-height: 400px;
+  }
+}
+</style>
+</head>
 <body>
-    <div class="ui container">
-        <h1 class="ui center align header">User Data Generator</h1>
-        <form class="ui form" action="/data" method="post">
-            <div class="ui segment">
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" name="firstname">
-                  <label>First Name</label>
-                </div>
-              </div>
-            <div class="ui segment">
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" name="lastname">
-                  <label>Last Name</label>
-                </div>
-              </div>
-            <div class="ui segment">
-                <div class="ui toggle checkbox">
-                  <input type="checkbox" name="Age">
-                  <label>Age</label>
-                </div>
-              </div>
-              <div class="ui segment">
-                  <div class="ui labeled ticked slider" id="restrictedlabelsslider"></div>
-                </div>
-            <input type="hidden" name="data" id="sliderValue">
-            <button class="ui blue button" onclick="myFunc()" type="submit">Submit</button>
-            <div class="ui indeterminate text loader" id="preparing">Preparing Files</div>
-        </form>
-    </div>
-    <script>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    </a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+  </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">THECONSULTANTS PROJECT GITHUB</span>
+    <h3 class="w3-center">Generating Random User Data and converting them into CSV format</h3>
+    <p class="w3-center"><em>INSTRUCTIONS</em></p>
+    <p>You will be able to create a CSV of random User Generated Data.
+        You have to just select which parameters you want to select and just swich the toggle on for that parameter.
+        You will be able select the how much data you need, you scroll the slider and select a range.
+        Select the parameters and select a slider range and click submit and userdata.csv will be downloaded
+    </p>
+  </div>
+</div>
+<div class="ui container">
+    <h1 class="ui center align header">PARAMETER SELCTOR</h1>
+    <form class="ui form" action="/data" method="post">
+        <div class="ui segment">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="firstname">
+              <label>First Name (Random amount of first names will be generated)</label>
+            </div>
+          </div>
+        <div class="ui segment">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="lastname">
+              <label>Last Name (Random amount of last names will be generated)</label>
+            </div>
+          </div>
+        <div class="ui segment">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="Age">
+              <label>Age (Random amount of ages will be generated from age 18 to 60)</label>
+            </div>
+          </div>
+        <div class="ui segment">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="states">
+              <label>States (Random amount of states will be generated with repetition of 28 Indian States)</label>
+            </div>
+          </div>
+          <div class="ui segment">
+              <div class="ui labeled ticked slider" id="restrictedlabelsslider"></div>
+            </div>
+        <input type="hidden" name="data" id="sliderValue">
+        <button class="ui blue button" onclick="myFunc()" type="submit">Submit</button>
+        <div class="ui indeterminate text loader" id="preparing">Preparing Files</div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="ui red message" id="message">{{ messages[0] }}</div>
+        {% endif %}
+        {% endwith %}
+
+    </form>
+</div>
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+  </div>
+</div>
+
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Kolkata, India<br>
+    <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: theconsultants@gmail.com<br>
+    <i>Phone: 8334822751/7602711508</i>
+  </div>
+</footer>
+ 
+<script>
+    $('#message').delay(500).fadeOut('slow');
         function myFunc() {
             $('#preparing').show();
-            setTimeout(function() { $('#preparing').hide(); }, 3000);
+            setTimeout(function() { $('#preparing').hide(); }, 2000);
         }
         if(!$('#sliderValue').val()) {
             $('#sliderValue').val(100);
@@ -63,6 +182,35 @@
                 variation: 'small visible black'
             }
         });
-    </script>
-    </body>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
 </html>

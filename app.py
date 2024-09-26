@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request, url_for, redirect, make_response
+from flask import Flask, render_template, request, url_for, redirect, make_response, flash
 from io import StringIO
 from random import sample, choices, shuffle
 import pandas as pd
 import csv
+
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route("/")
 def home():
@@ -15,6 +17,8 @@ def generate_random_userdata_csv():
         firstname = request.form.get("firstname")
         lastname = request.form.get("lastname")
         age = request.form.get("Age")
+        state = request.form.get("states")
+        print(age)
         number_of_data = int(request.form.get("data"))
         if firstname == None:
             print("First name unchecked")
@@ -37,17 +41,29 @@ def generate_random_userdata_csv():
             shuffle(random_age)
             random_age.extend(choices(random_age, k=number_of_data-42))
             fields["Age"] = random_age
+        if state == None:
+            print("State Unchecked")
+        else:
+            with open("statename.txt", "r") as file:
+                statenames = [line.capitalize().strip() for line in file]
+                shuffle(statenames)
+                random_states = choices(statenames, k=number_of_data)
+                fields["State"] = random_states
         df = pd.DataFrame(fields)
-        si = StringIO()
-        cw = csv.writer(si)
-        cw.writerow(df.columns.tolist())
-        cw.writerows(df.values.tolist())
-        output = make_response(si.getvalue())
-        output.headers["Content-Disposition"] = "attachment; filename=userdata.csv"
-        output.headers["Content-type"] = "text/csv"
-        return output
-        # return redirect(url_for("home"))
-
+        print(df)
+        print(number_of_data)
+        if not df.empty:
+            si = StringIO()
+            cw = csv.writer(si)
+            cw.writerow(df.columns.tolist())
+            cw.writerows(df.values.tolist())
+            output = make_response(si.getvalue())
+            output.headers["Content-Disposition"] = "attachment; filename=userdata.csv"
+            output.headers["Content-type"] = "text/csv"
+            return output
+        else:
+            flash('No Parameters Selected')
+            return render_template("temp.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
