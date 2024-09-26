@@ -14,7 +14,8 @@
 - Using render to deploy the Flask application
 - Configuring the environment and deploying the application
 - Due to free plan the worker node gets spooled down leading to few seconds of delay when opening the link.
-- 
+![image](https://github.com/user-attachments/assets/39e6e248-86a0-4c1f-8036-400fa6495eca)
+
  ## Solution for UI
  - Using Fomantic UI to create responsive components.
  - Using Jquery to add some functionality.
