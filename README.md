@@ -1,5 +1,5 @@
-*# Link for the live app
-[Random User Data Generetor in CSV format](https://problemsolver-ac0k.onrender.com/)*
+# Link for the live app
+- [Random User Data Generetor in CSV format](https://problemsolver-ac0k.onrender.com/)
 
 ### DEV INNOVATION PROBLEM 2 (RANDOM USER DATA GENERATOR)
 - Develop a web app that generates random user data(dummy data) and stores it in CSV file.
