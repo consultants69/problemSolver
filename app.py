@@ -42,16 +42,16 @@ def generate_random_userdata_csv():
         print(df)
 
         print(number_of_data)
-        # si = StringIO()
-        # cw = csv.writer(si)
-        # cw.writerow(df.columns.tolist())
-        # cw.writerows(df.values.tolist())
-        # output = make_response(si.getvalue())
-        # output.headers["Content-Disposition"] = "attachment; filename=userdata.csv"
-        # output.headers["Content-type"] = "text/csv"
-        # return output
-        return redirect(url_for("home"))
+        si = StringIO()
+        cw = csv.writer(si)
+        cw.writerow(df.columns.tolist())
+        cw.writerows(df.values.tolist())
+        output = make_response(si.getvalue())
+        output.headers["Content-Disposition"] = "attachment; filename=userdata.csv"
+        output.headers["Content-type"] = "text/csv"
+        return output
+        # return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
