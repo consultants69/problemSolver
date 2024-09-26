@@ -7,32 +7,46 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
         <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
     </head>
 <body>
-    <div style="margin-top: 50px" class="ui container">
+    <div class="ui container">
         <h1 class="ui center align header">User Data Generator</h1>
         <form class="ui form" action="/data" method="post">
-            <div class="ui slider checkbox">
-                <input type="checkbox" name="firstname">
-                <label>First Name</label>
-              </div><br><br>
-            <div class="ui slider checkbox">
-                <input type="checkbox" name="lastname">
-                <label>Last Name</label>
-            </div><br><br>
-            <div class="ui slider checkbox">
-                <input type="checkbox" name="age">
-                <label>Age</label>
-            </div><br><br>
-            <button class="ui blue button" type="submit">Submit</button>
             <div class="ui segment">
-                <div class="ui labeled ticked slider" id="restrictedlabelsslider"></div>
-            </div>
+                <div class="ui toggle checkbox">
+                  <input type="checkbox" name="firstname">
+                  <label>First Name</label>
+                </div>
+              </div>
+            <div class="ui segment">
+                <div class="ui toggle checkbox">
+                  <input type="checkbox" name="lastname">
+                  <label>Last Name</label>
+                </div>
+              </div>
+            <div class="ui segment">
+                <div class="ui toggle checkbox">
+                  <input type="checkbox" name="Age">
+                  <label>Age</label>
+                </div>
+              </div>
+              <div class="ui segment">
+                  <div class="ui labeled ticked slider" id="restrictedlabelsslider"></div>
+                </div>
+            <input type="hidden" name="data" id="sliderValue">
+            <button class="ui blue button" onclick="myFunc()" type="submit">Submit</button>
+            <div class="ui indeterminate text loader" id="preparing">Preparing Files</div>
         </form>
     </div>
     <script>
+        function myFunc() {
+            $('#preparing').show();
+            setTimeout(function() { $('#preparing').hide(); }, 3000);
+        }
+        if(!$('#sliderValue').val()) {
+            $('#sliderValue').val(100);
+        }
+        
         $('.ui.labeled.ticked.slider').slider({
             restrictedLabels: [100, 500, 1000, 2000, 3000, 4000, 5000],
             min: 100,
@@ -40,6 +54,10 @@
             step: 100,
             smooth: true,
             showThumbTooltip: true,
+            onChange: function(value) {
+                $('#sliderValue').val(value);
+                console.log('Your slider was changed to ' + value)
+            },
             tooltipConfig: {
                 position: 'bottom center',
                 variation: 'small visible black'
