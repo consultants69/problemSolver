@@ -1,4 +1,4 @@
-# Link for the live app
+# Link for the live app (Please wait 10-15 seconds)
 - [Random User Data Generetor in CSV format](https://problemsolver-ac0k.onrender.com/)
 
 ### DEV INNOVATION PROBLEM 2 (RANDOM USER DATA GENERATOR)
@@ -10,9 +10,13 @@
 - Using Pandas and StringIO library to get the CSV data.
 - Using Flask inbuilt method to download the "userdata.csv" file.
 
+## Solution for the Deployment
+- Using render to deploy the Flask application
+- Configuring the environment and deploying the application
+- Due to free plan the worker node gets spooled down leading to few seconds of delay when opening the link.
+- 
  ## Solution for UI
  - Using Fomantic UI to create responsive components.
  - Using Jquery to add some functionality.
 
-- [Random User Data Generetor in CSV format](https://problemsolver-ac0k.onrender.com/)
 
