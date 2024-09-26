@@ -29,3 +29,7 @@ Develop a web app that generates random user data(dummy data) and stores it in C
  - Using Jquery to add some functionality.
 ```
 
+## Generating the CSV
+![image](https://github.com/user-attachments/assets/9096a842-f11c-4a9d-ac6b-eb3fbf776a55)
+
+
