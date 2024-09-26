@@ -32,8 +32,7 @@ Develop a web app that generates random user data(dummy data) and stores it in C
  - Making it customizable so the user can choose whichever parameter they want.
  - Using Jquery to add some functionality.
 ```
-![image](https://github.com/user-attachments/assets/2b21f990-9615-4aa7-8f6e-ba13c333de08)
-
+![image](https://github.com/user-attachments/assets/9497acee-abab-4b38-97ed-b92078b0eb0b)
 
 ## Generating the CSV
 ![image](https://github.com/user-attachments/assets/9096a842-f11c-4a9d-ac6b-eb3fbf776a55)
