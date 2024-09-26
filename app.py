@@ -15,7 +15,6 @@ def generate_random_userdata_csv():
         firstname = request.form.get("firstname")
         lastname = request.form.get("lastname")
         age = request.form.get("Age")
-        print(age)
         number_of_data = int(request.form.get("data"))
         if firstname == None:
             print("First name unchecked")
@@ -39,9 +38,6 @@ def generate_random_userdata_csv():
             random_age.extend(choices(random_age, k=number_of_data-42))
             fields["Age"] = random_age
         df = pd.DataFrame(fields)
-        print(df)
-
-        print(number_of_data)
         si = StringIO()
         cw = csv.writer(si)
         cw.writerow(df.columns.tolist())
