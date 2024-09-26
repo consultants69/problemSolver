@@ -62,7 +62,6 @@ body, html {
 <div class="w3-top">
   <div class="w3-bar" id="myNavbar">
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-      <i class="fa fa-bars"></i>
     </a>
     </a>
   </div>
@@ -88,6 +87,11 @@ body, html {
 </div>
 <div class="ui container">
     <h1 class="ui center align header">PARAMETER SELCTOR</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="ui red message" id="message">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
     <form class="ui form" action="/data" method="post">
         <div class="ui segment">
             <div class="ui toggle checkbox">
@@ -120,12 +124,6 @@ body, html {
         <button class="ui blue button" onclick="myFunc()" type="submit">Submit</button>
         <div class="ui indeterminate text loader" id="preparing">Preparing Files</div>
 
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <div class="ui red message" id="message">{{ messages[0] }}</div>
-        {% endif %}
-        {% endwith %}
-
     </form>
 </div>
 
@@ -157,7 +155,7 @@ body, html {
 </footer>
  
 <script>
-    $('#message').delay(500).fadeOut('slow');
+    $('#message').delay(1000).fadeOut('slow');
         function myFunc() {
             $('#preparing').show();
             setTimeout(function() { $('#preparing').hide(); }, 2000);
