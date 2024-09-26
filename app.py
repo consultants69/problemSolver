@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, make_response, flash
+from flask import Flask, render_template, request, make_response, flash
 from io import StringIO
 from random import sample, choices, shuffle
 import pandas as pd
